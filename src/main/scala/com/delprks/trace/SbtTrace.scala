@@ -6,7 +6,6 @@ import sbt._
 
 object SbtTrace extends AutoPlugin {
 
-  private val searchRegex = (user: String) => s""""full_name":"$user/([A-Za-z-0-9]+)"""".r
   private val searchClient = new SearchClient
 
   object autoImport {
@@ -37,12 +36,7 @@ object SbtTrace extends AutoPlugin {
     )
 
     val searchResult = searchClient.search(projectName, user)
-    val resultRepoNameTarget = s""""full_name":"$user/"""
-
-    val dependencies = searchRegex(user)
-      .findAllIn(searchResult)
-      .toList
-      .map(_.replace(resultRepoNameTarget, "").replace("\"", ""))
+    val dependencies = searchClient.extractDependencies(searchResult, user)
 
     if (dependencies.nonEmpty) {
       println(s"Found ${dependencies.size} traces of $projectName in:")

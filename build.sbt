@@ -15,12 +15,14 @@ lazy val applicationSettings = Seq(
 )
 
 lazy val dependencies = Seq(
-  "org.scalaj" %% "scalaj-http" % "2.3.0"
+  "org.scalaj" %% "scalaj-http" % "2.3.0",
+  "org.specs2" %% "specs2-core" % "3.9.2" % "test"
 )
 
 lazy val publishSettings = Seq(
   version := Properties.envOrElse("BUILD_VERSION", "0.1-SNAPSHOT"),
   publishMavenStyle := true,
+  publishArtifact in Test := false,
   makePomConfiguration ~= { (mpc: MakePomConfiguration) =>
     mpc.copy(file = file("pom.xml"))
   },
