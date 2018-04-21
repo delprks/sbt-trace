@@ -20,7 +20,8 @@ And update the `build.sbt`:
 
 ```scala
 val traceSettings = Seq(
-  traceLibName := name.value
+  traceProjectName := name.value,
+  traceUser := "delprks"
 )
 
 lazy val `project-name`: Project = project.in(file("."))
@@ -33,25 +34,13 @@ lazy val `project-name`: Project = project.in(file("."))
 
 If you are using the plugin to search private repositories, you would need to provide a GitHub-generated access token which can retrieve repository information.
 
-You can either add this token to `trace_plugin.conf`, or export it as an environment variable:
+You should then export it as an environment variable:
 
 ```bash
-export TRACE_REPO_TOKEN=<token>
+export TRACE_GIT_TOKEN=<token>
 ```
 
-You can also refine the search by adding a prefix to the config file or `TRACE_REPO_PREFIX` environment variable:
-
-```bash
-export TRACE_REPO_PREFIX=<repository-prefix>
-```
-
-GitHub requires you to limit the search to particular organizations or users; to do this, update the `trace_plugin.conf` or export the organization/user:
-
-```bash
-export TRACE_REPO_USER=<organization-or-username>
-```
-
-You can run the following in client or libraries to find the traces:
+You can run the following in client or libraries to find their traces:
 
 ```bash
 sbt trace
