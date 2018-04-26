@@ -1,7 +1,7 @@
 # sbt-trace
 
 [![License](http://img.shields.io/:license-Apache%202-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.txt)
-[<img src="https://img.shields.io/maven-central/v/com.delprks/sbt-trace_2.10_0.13.svg?label=latest%20release%20for%202.10"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22sbt-trace_2.10_0.13%22)
+[<img src="https://img.shields.io/maven-central/v/com.delprks/sbt-trace_2.10_0.13.svg?label=latest%20release%20for%202.10"/>](http://search.maven.org/#search%7Cga%7C1%7Csbt-trace_2.10_0.13)
 
 `sbt-trace` is a SBT plugin that can find traces of the client or library in different applications.
 
