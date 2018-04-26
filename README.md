@@ -17,7 +17,7 @@ Add the following to `project/build.properties`:
 addSbtPlugin("com.delprks" % "sbt-trace" % "1.0.0")
 ```
 
-If you want to define the search scope if the library itself, you can add it to `build.sbt`:
+If you want to define the search scope in the library itself, you can add it to `build.sbt`:
 
 ```scala
 val traceSettings = Seq(
