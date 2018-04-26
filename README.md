@@ -16,11 +16,10 @@ Add the following to `project/build.properties`:
 addSbtPlugin("com.delprks" % "sbt-trace" % "1.0.0")
 ```
 
-And update the `build.sbt`:
+If you want to define the search scope if the library itself, you can add it to `build.sbt`:
 
 ```scala
 val traceSettings = Seq(
-  traceProjectName := name.value,
   traceUser := "delprks"
 )
 
@@ -28,6 +27,12 @@ lazy val `project-name`: Project = project.in(file("."))
   .enablePlugins(SbtTrace)
   .settings(traceSettings)
 
+```
+
+Or you can define it as an environment variable:
+
+```
+export TRACE_GIT_USER=delprks
 ```
 
 <h3>Run</h3>
