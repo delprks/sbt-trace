@@ -46,7 +46,7 @@ You should then export it as an environment variable:
 export TRACE_GIT_TOKEN=<token>
 ```
 
-You can run the following in client or libraries to find their traces:
+You can run the following in client or libraries to find their usage:
 
 ```bash
 sbt trace
