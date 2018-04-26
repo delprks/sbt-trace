@@ -12,7 +12,7 @@ class SearchClient {
     case _ => Http(url(projectName, user)).asString.body
   }
 
-  def extractDependencies(searchResult: String, user: String): List[String] = {
+  def extractDependents(searchResult: String, user: String): List[String] = {
     val resultRepoNameTarget = s""""full_name":"$user/"""
 
     searchRegex(user)

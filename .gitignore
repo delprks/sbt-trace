@@ -18,3 +18,4 @@ dist
 bin
 .DS_Store
 pom.xml
+credentials.sbt

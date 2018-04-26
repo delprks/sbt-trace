@@ -1,32 +1,47 @@
-import sbt.Keys.resolvers
+name := "sbt-trace"
 
-import scala.util.Properties
+organization := "com.delprks"
 
-val ScalaVersion = "2.10.7"
+scalacOptions := Seq("-unchecked", "-deprecation", "-feature", "-encoding", "utf8")
 
-lazy val applicationSettings = Seq(
-  name := "sbt-trace",
-  organization := "com.delprks",
-  scalaVersion := ScalaVersion,
-  scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature"),
-  sbtPlugin := true,
-  libraryDependencies ++= dependencies,
-  resolvers ++= Seq("Scala SBT" at "https://dl.bintray.com/typesafe/ivy-releases/")
-)
+javacOptions ++= Seq("-source", "1.8", "-target", "1.8")
 
-lazy val dependencies = Seq(
+scalaVersion := "2.10.7"
+
+sbtPlugin := true
+
+publishTo := {
+  val isSnapshotValue = isSnapshot.value
+  val nexus = "https://oss.sonatype.org/"
+  if (isSnapshotValue) Some("snapshots" at nexus + "content/repositories/snapshots")
+  else Some("releases" at nexus + "service/local/staging/deploy/maven2")
+}
+
+publishMavenStyle := true
+
+publishArtifact in Test := false
+
+parallelExecution in Test := false
+
+sbtrelease.ReleasePlugin.autoImport.releasePublishArtifactsAction := PgpKeys.publishSigned.value
+
+sbtrelease.ReleasePlugin.autoImport.releaseCrossBuild := false
+
+SbtPgp.autoImport.useGpg := true
+
+SbtPgp.autoImport.useGpgAgent := true
+
+libraryDependencies := Seq(
   "org.scalaj" %% "scalaj-http" % "2.3.0",
   "org.specs2" %% "specs2-core" % "3.9.2" % "test"
 )
 
-lazy val publishSettings = Seq(
-  version := Properties.envOrElse("BUILD_VERSION", "0.1-SNAPSHOT"),
-  publishMavenStyle := true,
-  publishArtifact in Test := false,
-  makePomConfiguration ~= { (mpc: MakePomConfiguration) =>
-    mpc.copy(file = file("pom.xml"))
-  },
-  pomExtra := <url>https://github.com/delprks/sbt-trace</url>
+pomIncludeRepository := {
+  _ => false
+}
+
+pomExtra := {
+  <url>https://github.com/delprks/sbt-trace</url>
     <licenses>
       <license>
         <name>Apache 2</name>
@@ -45,8 +60,4 @@ lazy val publishSettings = Seq(
         <url>http://github.com/delprks</url>
       </developer>
     </developers>
-)
-
-lazy val `sbt-trace`: Project = project.in(file("."))
-  .settings(applicationSettings)
-  .settings(publishSettings)
+}
