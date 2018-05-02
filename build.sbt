@@ -6,7 +6,9 @@ scalacOptions := Seq("-unchecked", "-deprecation", "-feature", "-encoding", "utf
 
 javacOptions ++= Seq("-source", "1.8", "-target", "1.8")
 
-scalaVersion := "2.10.7"
+crossScalaVersions := Seq("2.10.7", "2.12.5")
+
+crossSbtVersions := Seq("0.13.17", "1.1.2")
 
 sbtPlugin := true
 
@@ -25,7 +27,7 @@ parallelExecution in Test := false
 
 sbtrelease.ReleasePlugin.autoImport.releasePublishArtifactsAction := PgpKeys.publishSigned.value
 
-sbtrelease.ReleasePlugin.autoImport.releaseCrossBuild := false
+sbtrelease.ReleasePlugin.autoImport.releaseCrossBuild := true
 
 SbtPgp.autoImport.useGpg := true
 
