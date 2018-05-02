@@ -6,14 +6,7 @@ scalacOptions := Seq("-unchecked", "-deprecation", "-feature", "-encoding", "utf
 
 javacOptions ++= Seq("-source", "1.8", "-target", "1.8")
 
-crossScalaVersions := Seq("2.10.6", "2.12.0")
-
-crossSbtVersions := Seq("0.13.17", "1.0.0")
-
-scalaCompilerBridgeSource := {
-  val sv = appConfiguration.value.provider.id.version
-  ("org.scala-sbt" % "compiler-interface" % sv % "component").sources
-}
+scalaVersion := "2.10.7"
 
 sbtPlugin := true
 
@@ -32,7 +25,7 @@ parallelExecution in Test := false
 
 sbtrelease.ReleasePlugin.autoImport.releasePublishArtifactsAction := PgpKeys.publishSigned.value
 
-sbtrelease.ReleasePlugin.autoImport.releaseCrossBuild := true
+sbtrelease.ReleasePlugin.autoImport.releaseCrossBuild := false
 
 SbtPgp.autoImport.useGpg := true
 
