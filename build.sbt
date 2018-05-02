@@ -8,8 +8,6 @@ javacOptions ++= Seq("-source", "1.8", "-target", "1.8")
 
 crossScalaVersions := Seq("2.10.6", "2.12.0")
 
-crossSbtVersions := Seq("0.13.17", "1.0.0")
-
 scalaCompilerBridgeSource := {
   val sv = appConfiguration.value.provider.id.version
   ("org.scala-sbt" % "compiler-interface" % sv % "component").sources
