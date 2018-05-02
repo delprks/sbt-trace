@@ -12,7 +12,7 @@ crossScalaVersions := Seq("2.10.7", "2.11.12", "2.12.4")
 
 //crossScalaVersions := Seq("2.10.6", "2.12.0")
 //
-//crossSbtVersions := Seq("0.13.17", "1.0.0")
+crossSbtVersions := Seq("0.13.17", "1.0.0")
 
 //scalaCompilerBridgeSource := {
 //  val sv = appConfiguration.value.provider.id.version
